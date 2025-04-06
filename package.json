@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^8.13.2",
+    "nodemon": "^3.1.9"
+  },
+  "name": "app-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index",
+    "build": "node index"
+  },
+  "keywords": [],
+  "author": "Javier López",
+  "license": "ISC",
+  "description": ""
+}
