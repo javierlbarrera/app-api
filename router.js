@@ -1,5 +1,5 @@
 const express = require('express')
-const {getEntrenamientos, postEntrenamiento, getEjercicios} = require('./controllers')
+const {getEntrenamientos, postEntrenamiento, getEjercicios, deleteEntrenamiento} = require('./controllers')
 const router = express.Router()
 
 router.route('/entrenamientos')
@@ -9,6 +9,9 @@ router.route('/entrenamientos')
 router.route('/ejercicios')
     .get(getEjercicios)
 
+router.route('/entrenamientos/:id')   
+    .delete(deleteEntrenamiento)
+    
 // Handlers copiados de los proyectos de clase
 router.all('*', ( req , res , next )=>{
     const error = new Error()
