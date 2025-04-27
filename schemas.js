@@ -3,64 +3,81 @@ const mongoose = require('mongoose')
 // Este es un Schema de los ejercicios que podremos seleccionar durante el entrenamiento. Lo pongo antes para pode incluirlo en el Schema de entrenamiento
 const ejercicioSchema = new mongoose.Schema(
     {
-        nombre : {
+        nombre: {
             type: String,
         },
-        grupoMuscular : {
+        grupoMuscular: {
             type: String,
         },
-        series : {
+        series: {
             type: Array,
         },
-/*         imagen : { qué type usar para imagen?
-            type: ,
-        }, */
+        /*         imagen : { qué type usar para imagen?
+                    type: ,
+                }, */
     },
     {
-        collection : 'ejercicios',
-        collation : {
-            locale : 'es',
-            strength : 2
+        collection: 'ejercicios',
+        collation: {
+            locale: 'es',
+            strength: 2
         },
-        versionKey : false
+        versionKey: false
     }
 )
 const Ejercicio = mongoose.model('Ejercicio', ejercicioSchema)
 
 const entrenamientoSchema = new mongoose.Schema(
     {
-        nombre : {
+        nombre: {
             type: String,
         },
-        usuario : {
+        usuario: {
             type: String,
         },
-        fecha : {
+        fecha: {
             type: Date,
         },
-        duracion : {
+        duracion: {
             type: Number,
         },
-        volumen : {
+        volumen: {
             type: Number,
         },
-        ejercicios : [
+        ejercicios: [
             ejercicioSchema // Aquí incluyo el Schema de ejercicios para que cada entrenamiento tenga su lista de ejercicios
         ]
     },
     {
-        collection : 'entrenamientos',
-        timestamps : true, // añade createdAt y updatedAt. La idea es después usarlos en el front para poder mostrar un "hace X tiempo"
-        collation : {
-            locale : 'es',
-            strength : 2
+        collection: 'entrenamientos',
+        timestamps: true, // añade createdAt y updatedAt. La idea es después usarlos en el front para poder mostrar un "hace X tiempo"
+        collation: {
+            locale: 'es',
+            strength: 2
         },
-        versionKey : false
+        versionKey: false
     }
 )
 const Entrenamiento = mongoose.model('Entrenamiento', entrenamientoSchema)
 
-module.exports = { 
+const usuarioSchema = new mongoose.Schema({
+    correo: String,
+    contrasena: String // creo que no acepta la ñ
+},
+    {
+        collection: 'usuarios',
+        collation: {
+            locale: 'es',
+            strength: 2
+        },
+        versionKey: false
+    })
+
+const Usuario = mongoose.model('Usuario', usuarioSchema)
+
+
+module.exports = {
     Entrenamiento,
-    Ejercicio
+    Ejercicio,
+    Usuario
 }

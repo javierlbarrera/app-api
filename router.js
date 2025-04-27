@@ -1,6 +1,9 @@
 const express = require('express')
-const {getEntrenamientos, postEntrenamiento, getEjercicios, deleteEntrenamiento} = require('./controllers')
+const {postLogin, getEntrenamientos, getEntrenamientoById, postEntrenamiento, getEjercicios, deleteEntrenamiento, putEntrenamiento} = require('./controllers')
 const router = express.Router()
+
+router.route('/login')
+    .post(postLogin)
 
 router.route('/entrenamientos')
     .get(getEntrenamientos)
@@ -9,7 +12,9 @@ router.route('/entrenamientos')
 router.route('/ejercicios')
     .get(getEjercicios)
 
-router.route('/entrenamientos/:id')   
+router.route('/entrenamientos/:id')
+    .get(getEntrenamientoById)
+    .put(putEntrenamiento)   
     .delete(deleteEntrenamiento)
     
 // Handlers copiados de los proyectos de clase
